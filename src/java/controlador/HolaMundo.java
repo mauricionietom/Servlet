@@ -33,8 +33,11 @@ public class HolaMundo extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-            String clave1=request.getParameter("clave1");
-            String clave2=request.getParameter("clave2");
+            
+            String Titulo=request.getParameter("Titulo");
+            String Autor=request.getParameter("Autor");
+            String NumeroDePaginas=request.getParameter("NumeroDePaginas");
+            String Calificacion=request.getParameter("Calificacion");
             ConjuntoLibro libros = new ConjuntoLibro();
             Libro[] listaLibros =libros.listarLibros();
             
@@ -46,13 +49,17 @@ public class HolaMundo extends HttpServlet {
             out.println("<title>Servlet HolaMundo</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>HolaMundo " + clave1 + " " + clave2 + "</h1>");
+            out.println("<h1>HolaMundo      <br>  " + Titulo + "</br> <br> Autor " + Autor + "</br><br> # de paginas " + NumeroDePaginas + "\n Califiacion " + Calificacion + "</h1>");
              
             for (int i = 0; i < listaLibros.length; i++) {
                 Libro l = listaLibros[i];
                 if(l != null)
                 out.println(l.getNombre() + " " + l.getCalificacion());
             }
+            
+            out.println("<a href=\"index.html\">VolverIncio </a>");
+            
+            
             
             out.println("</body>");
             out.println("</html>");
